@@ -12,41 +12,44 @@ public class SpiralPrinting {
         System.out.println();
     }
 
-    public static  void Spiral( int [][] arr ){
-        int minr = 0 , minc = 0 , maxr = arr.length-1 , maxc = arr[0].length - 1;
+    public static  int [][] Spiral( int n ){
+        int minr = 0 , minc = 0 , maxr = n-1 , maxc = n - 1;
+        int [][] arr = new int [n][n];
+        int cnt = 1 ;
         while ( minr <= maxr && minc <= maxc){
 
             // left to right
             for ( int j = minc ; j <= maxc ; j++){
-                System.out.print(arr[minr][j]+"  ");
+                arr[minr][j] = cnt++;
             }minr++;
 
             if (minr > maxr || minc > maxc) break;
             // top to bottom
             for (int i = minr ; i <= maxr ; i++ ){
-                System.out.print(arr[i][maxc]+"  ");
+               arr[i][maxc] = cnt++;
             }maxc--;
 
             if (minr > maxr || minc > maxc) break;
             //right to left
             for ( int j = maxc ; j >= minc ; j--){
-                System.out.print(arr[maxr][j]+"  ");
+                arr[maxr][j] = cnt++;
             }maxr--;
 
             if (minr > maxr || minc > maxc) break;
             // bottom to top
             for (int i = maxr ; i >= minr ; i-- ){
-                System.out.print(arr[i][minc]+"  ");
+               arr[i][minc] = cnt++;
             }minc++;
 
         }
-
+        return arr;
     }
     public static void main(String[] args) {
-        int [][] arr = { {1,2,3,4,5},{6,7,8,9,10},{11,12,13,14,15}};
-//        Print(arr);
 
-        Spiral(arr);
+
+        int [][] arr = Spiral(4);
+        Print(arr);
+
 
     }
 }
